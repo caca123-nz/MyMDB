@@ -1,23 +1,5 @@
 from django.db import models
 
-class Person(models.Model):
-  '''Table of people who have appeared in a film, written or directed a film'''
-  first_name = models.CharField(max_length=140, db_column="first_name")
-  last_name = models.CharField(max_length=140, db_column="last_name")
-  born = models.DateField()
-  died = models.DateField(null=True, blank=True)
-
-  class Meta:
-    ordering = ('last_name', 'first_name')
-    db_table = "person"
-
-  def __str__(self):
-    if self.died:
-      return '{}, {} ({}-{})'.format(self.last_name, self.first_name,
-      self.born, self.died)
-    return '{}, {} ({})'.format(self.last_name, self.first_name,
-      self.born)
-
 class Movie(models.Model):
   '''Creating db table for movies'''
 
@@ -38,6 +20,9 @@ class Movie(models.Model):
   )
   runtime = models.PositiveIntegerField()
   website = models.URLField(blank=True)
+  director = models.ForeignKey(to="Person", on_delete=models.SET_NULL, blank=True, null=True, related_name='directed')
+  writers = models.ManyToManyField(to="Person", related_name="writing_credits", blank=True)
+  actors = models.ManyToManyField(to="Person", through="Role", related_name='acting_credits', blank=True)
 
   class Meta:
     # Table options
@@ -49,5 +34,32 @@ class Movie(models.Model):
     return '{} ({})'.format(self.title, self.year)
 
 
+class Person(models.Model):
+  '''Table of people who have appeared in a film, written or directed a film'''
+  first_name = models.CharField(max_length=140, db_column="first_name")
+  last_name = models.CharField(max_length=140, db_column="last_name")
+  born = models.DateField()
+  died = models.DateField(null=True, blank=True)
 
+  class Meta:
+    ordering = ('last_name', 'first_name')
+    db_table = "person"
 
+  def __str__(self):
+    if self.died:
+      return '{}, {} ({}-{})'.format(self.last_name, self.first_name,
+      self.born, self.died)
+    return '{}, {} ({})'.format(self.last_name, self.first_name,
+      self.born)
+
+class Role(models.Model):
+  '''Actor role in a film'''
+  name = models.CharField(max_length=140)
+  movie = models.ForeignKey(Movie, on_delete=models.DO_NOTHING)
+  person = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
+
+  class Meta:
+    unique_together=('movie', 'person', 'name')
+    
+  def __str__(self):
+    return '{} {} {}'.format(self.movie.id, self.person.id, self.name)
