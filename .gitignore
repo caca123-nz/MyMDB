@@ -1,7 +1,7 @@
 # venv
 venv/
 # db files
-*.db.sqlite3
+*db.sqlite3
 # Byte-compiled
 __pycache__/
 # media
