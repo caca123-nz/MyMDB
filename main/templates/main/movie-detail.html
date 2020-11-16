@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+<title>{% block title %} {{movie.title}}-{{block.super}} {%endblock %}</title>
+{% block content %}
+<article class="detail">
+  <div class="main">
+    <h1>{{movie}}</h1>
+    <p>{{movie.plot}}</p>
+  </div>
+  <div class="side">
+    <p>This movie is rated:</p>
+    <span>{{movie.get_rating_display}}</span>
+  </div>
+</article>
+{% endblock %}
