@@ -1,5 +1,23 @@
 from django.db import models
 
+class Person(models.Model):
+  '''Table of people who have appeared in a film, written or directed a film'''
+  first_name = models.CharField(max_length=140, db_column="first_name")
+  last_name = models.CharField(max_length=140, db_column="last_name")
+  born = models.DateField()
+  died = models.DateField(null=True, blank=True)
+
+  class Meta:
+    ordering = ('last_name', 'first_name')
+    db_table = "person"
+
+  def __str__(self):
+    if self.died:
+      return '{}, {} ({}-{})'.format(self.last_name, self.first_name,
+      self.born, self.died)
+    return '{}, {} ({})'.format(self.last_name, self.first_name,
+      self.born)
+
 class Movie(models.Model):
   '''Creating db table for movies'''
 
