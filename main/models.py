@@ -24,6 +24,7 @@ class Movie(models.Model):
   class Meta:
     # Table options
     db_table = "movie"
+    ordering = ('-year', 'title')
 
   def __str__(self):
     # String representaion on print
