@@ -25,7 +25,7 @@ SECRET_KEY = 'vh!0(+-#pq&krb$5+qrdtaq=v@t$1m*^==)tu8@d)tdz7q^vd#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -120,3 +120,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR/ "static"]
+# STATIC_ROOT = "static/"

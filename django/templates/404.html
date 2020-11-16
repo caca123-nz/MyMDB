@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+<title>{% block title %}No Found{% endblock %}</title>
+{% block content %}
+<div class="error">
+  <h1>NOT FOUND</h1>
+  <a href="{% url 'main:movie-list' %}">BACK HOME</a>
+</div>
+{% endblock %}

@@ -181,3 +181,17 @@ nav {
     margin-left: 0;
   }
 }
+
+/* ERROR page */
+.error {
+  text-align: center;
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 84px);
+}
+
+.error a {
+  background: var(--clr-primary-2);
+  color: var(--clr-white);
+  padding: 1rem 1.2rem;
+}
