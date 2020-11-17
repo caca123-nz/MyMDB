@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class MovieManager(models.Manager):
   '''Query all related data or single related data (person) across a single query'''
@@ -77,6 +78,24 @@ class Role(models.Model):
 
   class Meta:
     unique_together=('movie', 'person', 'name')
+    db_table = "role"
 
   def __str__(self):
     return '{} {} {}'.format(self.movie.id, self.person.id, self.name)
+
+class Vote(models.Model):
+  '''Vote table to track who votes for which film'''
+  UP = 1
+  DOWN = -1
+  VALUE_CHOICES = (
+    (UP, "👍"),
+    (DOWN, "👎")
+  )
+
+  value = models.SmallIntegerField(choices=VALUE_CHOICES)
+  user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+  movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+  class Meta:
+    db_table = "vote"
+    unique_together = ("user", "movie")
