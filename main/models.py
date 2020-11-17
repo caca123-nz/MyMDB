@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models.aggregates import Sum
 from django.conf import settings
 
+from uuid import uuid4
+
 class MovieManager(models.Manager):
   '''Query all related data or single related data (person) across a single query'''
   def all_with_related_persons(self):
@@ -120,3 +122,17 @@ class Vote(models.Model):
   class Meta:
     db_table = "vote"
     unique_together = ("user", "movie")
+  
+def movie_directory_path_with_uuid(instance, filename):
+  # Generate uploaded file's name
+  return '{}/{}'.format(instance.movie_id, uuid4())
+
+class MovieImage(models.Model):
+  '''Db table for film's image'''
+  image = models.ImageField(upload_to=movie_directory_path_with_uuid)
+  uploaded = models.DateTimeField(auto_now_add=True)
+  movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+  user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+  class Meta:
+    db_table = "movie_image"
