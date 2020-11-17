@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
-from core.models import Movie, Vote
+from main.models import Movie, Vote
 
 class VoteForm(forms.ModelForm):
   '''Provide a form to let user votes for a film'''
@@ -19,7 +19,7 @@ class VoteForm(forms.ModelForm):
 
   value = forms.ChoiceField(
     label="Vote",
-    widget=forms.CheckboxInput(attrs={"class": "form-input"}),
+    widget=forms.RadioSelect(attrs={"class": "form-control-input"}),
     choices=Vote.VALUE_CHOICES
   )
 

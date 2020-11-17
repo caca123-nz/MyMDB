@@ -7,12 +7,16 @@
     <p>{{movie.plot}}</p>
   </div>
   <div class="side">
-    <p>This movie is rated:</p>
-    <span>{{movie.get_rating_display}}</span>
-    <div class="detail-vote">
+    <div>
+      <p>This movie is rated:</p>
+      <span>{{movie.get_rating_display}}</span>
+    </div>
+
+    <div class="vote">
       {% if vote_form %}
       <form action="{{vote_form_url}}" method="POST">
         {% csrf_token %} {{vote_form.as_p}}
+        <button class="btn">Vote</button>
       </form>
       {% else %}
       <p>Log in to vote for this movie</p>

@@ -172,10 +172,37 @@ nav {
 .detail .side {
   margin-left: 1rem;
 }
+
 .detail span {
   background-color: var(--clr-primary-1);
   color: var(--clr-white);
   padding: 0.5rem 1rem;
+}
+
+.detail .vote {
+  margin-top: 2rem;
+}
+
+.vote form ul.form-control-input {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+}
+
+.vote form {
+  max-width: 150px;
+}
+.vote form p {
+  margin-bottom: 0;
+}
+
+ul.form-control-input label {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+ul.form-control-input label:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 650px) {
