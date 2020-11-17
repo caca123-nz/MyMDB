@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block content %}
+<section class="register-container">
+  <h2 class="title">Register for MyMDB</h2>
+  <form method="POST">
+    {{form.as_p}} {% csrf_token %}
+    <button type="submit">Register</button>
+  </form>
+</section>
+{% endblock %}
