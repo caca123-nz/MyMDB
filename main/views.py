@@ -10,10 +10,10 @@ class MovieList(ListView):
 
 class MovieDetail(DetailView):
   context_object_name = "movie"
-  queryset = Movie.all_with_related_persons()
+  queryset = Movie.objects.all_with_related_persons()
   template_name = "main/movie-detail.html"
 
 class PersonDetail(DetailView):
   context_object_name = "person"
-  queryset = Person.all_with_prefetch_movies()
+  queryset = Person.objects.all_with_prefetch_movies()
   template_name = "main/person-detail.html"

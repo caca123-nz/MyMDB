@@ -3,7 +3,7 @@ from django.db import models
 class MovieManager(models.Manager):
   '''Query all related data or single related data (person) across a single query'''
   def all_with_related_persons(self):
-    qs = get_queryset()
+    qs = self.get_queryset()
     qs = qs.select_related('director')
     qs = qs.prefetch_related('writers', 'actors')
     return qs
