@@ -179,6 +179,14 @@ nav {
   padding: 0.5rem 1rem;
 }
 
+.detail .score {
+  margin-top: 2rem;
+}
+
+.detail .score p {
+  margin-bottom: 0;
+}
+
 .detail .vote {
   margin-top: 2rem;
 }

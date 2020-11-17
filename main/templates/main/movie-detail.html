@@ -11,6 +11,9 @@
       <p>This movie is rated:</p>
       <span>{{movie.get_rating_display}}</span>
     </div>
+    <div class="score">
+      <p>score: {{movie.score|default_if_none:"TBD"}}</p>
+    </div>
 
     <div class="vote">
       {% if vote_form %}
