@@ -83,6 +83,19 @@ class Role(models.Model):
   def __str__(self):
     return '{} {} {}'.format(self.movie.id, self.person.id, self.name)
 
+class VoteManager(models.Manager):
+  '''
+  Check if user has a related vote model instance
+  for a given movie model instance an return it or a 
+  blank one
+  '''
+  def get_vote_or_unsaved_blank_vote(self, user, movie):
+    vote_data = {"movie":movie, "user":user}
+    try:
+      return Vote.objects.get(**vote_data)
+    except Vote.DoesNotExist:
+      return Vote(**vote_data)
+
 class Vote(models.Model):
   '''Vote table to track who votes for which film'''
   UP = 1
@@ -95,6 +108,8 @@ class Vote(models.Model):
   value = models.SmallIntegerField(choices=VALUE_CHOICES)
   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+  objects = VoteManager()
 
   class Meta:
     db_table = "vote"
