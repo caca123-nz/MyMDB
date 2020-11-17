@@ -123,4 +123,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR/ "static"]
 # STATIC_ROOT = "static/"
 
+MEDIA_URL = '/uploaded/'
+MEDIA_ROOT = BASE_DIR / "../media_root"
+
 LOGIN_REDIRECT_URL = "main:movie-list"
