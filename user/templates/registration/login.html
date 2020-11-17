@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% block content %}
 <section class="register-container">
-  <h2 class="title">Register for MyMDB</h2>
+  <h2 class="title">Login for MyMDB</h2>
   <form method="POST">
     {{form.as_p}} {% csrf_token %}
-    <button class="btn" type="submit">Register</button>
+    <button class="btn" type="submit">Login</button>
   </form>
 </section>
 {% endblock %}

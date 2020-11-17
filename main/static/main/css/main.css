@@ -94,6 +94,15 @@ p {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
 }
+.btn {
+  background: var(--clr-primary-1);
+  color: var(--clr-white);
+  padding: 0.4rem 0.6rem;
+  border-color: transparent;
+  text-transform: uppercase;
+  transition: var(--transition);
+  border-radius: 0.15rem;
+}
 /*  global classes */
 
 /* section */

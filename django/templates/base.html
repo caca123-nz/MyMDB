@@ -16,6 +16,17 @@
         <ul class="links">
           <li><a href="{% url 'main:movie-list' %}">Movies</a></li>
         </ul>
+        <ul class="links">
+          {% if request.user.is_authenticated %}
+          <li>
+            <a href="{% url 'user:logout' %}"
+              ><span>{{request.user.username}}</span> logout</a
+            >
+          </li>
+          {% else %}
+          <li><a href="{% url 'user:login' %}">login</a></li>
+          {% endif %}
+        </ul>
       </div>
     </nav>
     {% block content %} {% endblock %}
