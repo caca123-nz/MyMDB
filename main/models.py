@@ -1,5 +1,13 @@
 from django.db import models
 
+class MovieManager(models.Manager):
+  '''Query all related data or single related data (person) across a single query'''
+  def all_with_related_persons(self):
+    qs = get_queryset()
+    qs = qs.select_related('director')
+    qs = qs.prefetch_related('writers', 'actors')
+    return qs
+
 class Movie(models.Model):
   '''Creating db table for movies'''
 
@@ -24,6 +32,8 @@ class Movie(models.Model):
   writers = models.ManyToManyField(to="Person", related_name="writing_credits", blank=True)
   actors = models.ManyToManyField(to="Person", through="Role", related_name='acting_credits', blank=True)
 
+  objects = MovieManager()
+
   class Meta:
     # Table options
     db_table = "movie"
@@ -33,6 +43,11 @@ class Movie(models.Model):
     # String representaion on print
     return '{} ({})'.format(self.title, self.year)
 
+class PersonManager(models.Manager):
+  '''Query all related data (movies) across a single query'''
+  def all_with_prefetch_movies(self):
+    qs = self.get_queryset()
+    return qs.prefetch_related('directed', 'writing_credits', 'role_set__movie')
 
 class Person(models.Model):
   '''Table of people who have appeared in a film, written or directed a film'''
@@ -40,6 +55,8 @@ class Person(models.Model):
   last_name = models.CharField(max_length=140, db_column="last_name")
   born = models.DateField()
   died = models.DateField(null=True, blank=True)
+
+  objects = PersonManager()
 
   class Meta:
     ordering = ('last_name', 'first_name')
@@ -60,6 +77,6 @@ class Role(models.Model):
 
   class Meta:
     unique_together=('movie', 'person', 'name')
-    
+
   def __str__(self):
     return '{} {} {}'.format(self.movie.id, self.person.id, self.name)
