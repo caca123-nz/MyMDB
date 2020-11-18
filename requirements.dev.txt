@@ -1,2 +1,5 @@
-django>"3.1.x"
-pillow
+-r requirements.common.txt
+
+# display various debug information about the current request/response and when clicked,
+# display more details about the panel’s content.
+django-debug-toolbar<3.1.1 

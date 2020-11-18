@@ -1,0 +1,10 @@
+-r requirements.common.txt
+psycopg2<2.8.6
+
+# packages to help us upload files to S3 easily
+django-storages<1.10.1
+
+# Amazon Web Services (AWS) Software Development Kit (SDK) for Python
+boto3<1.16.20
+
+uwsgi<2.0.19.1
