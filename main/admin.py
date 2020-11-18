@@ -1,4 +1,6 @@
 from django.contrib import admin
-from main.models import Movie
+from main.models import Movie, Person, Role
 
 admin.site.register(Movie)
+admin.site.register(Person)
+admin.site.register(Role)
