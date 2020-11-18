@@ -120,10 +120,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR/ "static"]
-# STATIC_ROOT = "static/"
+STATIC_ROOT = BASE_DIR/ "static"
 
+# media files
 MEDIA_URL = '/uploaded/'
-MEDIA_ROOT = BASE_DIR / "../media_root"
+MEDIA_ROOT = BASE_DIR / "media_root"
 
 LOGIN_REDIRECT_URL = "main:movie-list"

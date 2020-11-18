@@ -159,11 +159,14 @@ nav {
   max-width: var(--max-width);
   margin: 5rem auto 0 auto;
   height: 50vh;
-  box-shadow: var(--light-shadow);
   border-radius: 0.3rem;
   padding: 3rem;
   display: grid;
   grid-template-columns: 1fr auto;
+  transition: var(--transition);
+}
+.detail:hover {
+  box-shadow: var(--light-shadow);
 }
 .detail .main {
   border-right: 1px solid var(--clr-grey-10);
