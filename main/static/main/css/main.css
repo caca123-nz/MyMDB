@@ -180,7 +180,7 @@ nav {
 }
 
 .detail .score {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .detail .score p {
@@ -188,7 +188,7 @@ nav {
 }
 
 .detail .vote {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .vote form ul.form-control-input {
@@ -211,6 +211,10 @@ ul.form-control-input label {
 }
 ul.form-control-input label:hover {
   cursor: pointer;
+}
+
+.image-upload {
+  margin-top: 1rem;
 }
 
 @media screen and (max-width: 650px) {

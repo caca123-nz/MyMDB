@@ -5,6 +5,13 @@
   <div class="main">
     <h1>{{movie}}</h1>
     <p>{{movie.plot}}</p>
+    <ul class="movie-image">
+      {% for image in movie.movieimage_set.all %}
+      <li class="list-item">
+        <img src="{{image.image.url}}" />
+      </li>
+      {% endfor %}
+    </ul>
   </div>
   <div class="side">
     <div>
@@ -19,12 +26,26 @@
       {% if vote_form %}
       <form action="{{vote_form_url}}" method="POST">
         {% csrf_token %} {{vote_form.as_p}}
-        <button class="btn">Vote</button>
+        <button type="submit" class="btn">Vote</button>
       </form>
       {% else %}
       <p>Log in to vote for this movie</p>
       {% endif %}
     </div>
+
+    {% if image_form %}
+    <div class="image-upload">
+      <h4>Upload New Image</h4>
+      <form
+        enctype="multipart/form-data"
+        action="{% url 'main:movie-image-upload' movie.id %}"
+        method="post"
+      >
+        {% csrf_token %} {{image_form.as_p}}
+        <button type="submit" class="btn">Upload</button>
+      </form>
+    </div>
+    {% endif %}
   </div>
 </article>
 {% endblock %}

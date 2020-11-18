@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import redirect
 
-from main.forms import VoteForm
+from main.forms import VoteForm, MovieImageForm
 from main.models import Movie, Person, Vote
 
 class MovieList(ListView):
@@ -17,9 +17,15 @@ class MovieDetail(DetailView):
   queryset = Movie.objects.all_with_related_persons_and_score()
   template_name = "main/movie-detail.html"
 
+  def movie_image_form(self):
+    if self.request.user.is_authenticated:
+      return MovieImageForm()
+    return None
+
   def get_context_data(self, **kwargs):
     # Create vote_form an passing in the context object
     ctx = super().get_context_data(**kwargs)
+    ctx["image_form"] = self.movie_image_form()
     if self.request.user.is_authenticated:
       vote_data = {"user": self.request.user, "movie":self.object}
       vote = Vote.objects.get_vote_or_unsaved_blank_vote(**vote_data)
@@ -68,8 +74,7 @@ class CreateVote(SuccessUrlAndRenderToResponse, LoginRequiredMixin, CreateView):
     initial["movie"] = self.kwargs["movie_id"]
     return initial
   
-  
- 
+
 class UpdateVote(SuccessUrlAndRenderToResponse, LoginRequiredMixin, UpdateView):
   form_class = VoteForm
   queryset = Vote.objects.all()
@@ -81,4 +86,10 @@ class UpdateVote(SuccessUrlAndRenderToResponse, LoginRequiredMixin, UpdateView):
     if vote.user != user:
       raise PermissionDenied("Cannot change another users vote")
     return vote
-  
+
+class MovieImageUpload(SuccessUrlAndRenderToResponse, LoginRequiredMixin, CreateView):
+  def get_initial(self):
+    initial = super().get_initial()
+    initial["user"]=self.request.user.id
+    initial["movie"]=self.kwargs["movie_id"]
+    return initial
