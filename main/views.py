@@ -93,3 +93,8 @@ class MovieImageUpload(SuccessUrlAndRenderToResponse, LoginRequiredMixin, Create
     initial["user"]=self.request.user.id
     initial["movie"]=self.kwargs["movie_id"]
     return initial
+
+class TopMovies(ListView):
+  template_name = "main/top-movies-list.html"
+  context_object_name = "movies"
+  queryset = Movie.objects.top_movies(limit=10)

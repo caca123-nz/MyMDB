@@ -17,6 +17,9 @@
           <li><a href="{% url 'main:movie-list' %}">Movies</a></li>
         </ul>
         <ul class="links">
+          <li><a href="{% url 'main:top-movies' %}">Top 10 Movies</a></li>
+        </ul>
+        <ul class="links">
           {% if request.user.is_authenticated %}
           <li>
             <a href="{% url 'user:logout' %}"

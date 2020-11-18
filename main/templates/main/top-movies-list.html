@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block content %}
+<section class="section">
+  <div class="section-center">
+    <ul class="links">
+      {% for movie in movies %}
+      <li><a href="{% url 'main:movie-detail' movie.pk %}">{{movie}}</a></li>
+      {% empty %}
+      <li>no movie yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}

@@ -95,13 +95,15 @@ p {
   color: var(--clr-grey-5);
 }
 .btn {
-  background: var(--clr-primary-1);
+  background-color: var(--clr-primary-1);
   color: var(--clr-white);
   padding: 0.4rem 0.6rem;
   border-color: transparent;
   text-transform: uppercase;
   transition: var(--transition);
   border-radius: 0.15rem;
+  font-weight: 450;
+  letter-spacing: 0.1rem;
 }
 /*  global classes */
 
@@ -168,6 +170,7 @@ nav {
 .detail:hover {
   box-shadow: var(--light-shadow);
 }
+
 .detail .main {
   border-right: 1px solid var(--clr-grey-10);
 }
@@ -179,7 +182,8 @@ nav {
 .detail span {
   background-color: var(--clr-primary-1);
   color: var(--clr-white);
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.15rem;
 }
 
 .detail .score {
