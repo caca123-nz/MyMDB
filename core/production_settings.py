@@ -9,6 +9,7 @@ ALLOWED_HOSTS +=[
 ]
 
 DATABASES["default"].update({
+  "ENGINE": "django.db.backends.postgresql"
   "NAME": os.getenv("DJANGO_DB_NAME"),
   "USER": os.getenv("DJANGO_DB_USER")
   "PASSWORD": os.getenv("DJANGO_DB_PASSWORD"),
@@ -24,8 +25,4 @@ CACHES = {
   }
 }
 
-# file uploads
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-AWS_ACCESS_KEY_ID = os.getenv("AWS_SECRET_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY_ID = os.getenv("AWS_SECRET_SECRET_ACCESS_KEY_ID")
-AWS_STRORAGE_BUCKET_NAME = os.getenv("DJANGO_UPLOAD_S3_BUCKET")
+

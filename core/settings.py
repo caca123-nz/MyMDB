@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -78,7 +78,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -124,6 +125,6 @@ STATIC_ROOT = BASE_DIR/ "static_root"
 
 # media files
 MEDIA_URL = '/uploaded/'
-MEDIA_ROOT = BASE_DIR / "media_root"
+MEDIA_ROOT = BASE_DIR / "../media_root"
 
 LOGIN_REDIRECT_URL = "main:movie-list"
