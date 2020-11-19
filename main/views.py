@@ -5,9 +5,10 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import redirect
 
 from main.forms import VoteForm, MovieImageForm
+from main.mixins import CachePageVaryOnCookieMixin
 from main.models import Movie, Person, Vote
 
-class MovieList(ListView):
+class MovieList(CachePageVaryOnCookieMixin, ListView):
   context_object_name = "movies"
   model = Movie
   template_name = "main/movie-list.html"

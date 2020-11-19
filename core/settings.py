@@ -128,3 +128,5 @@ MEDIA_URL = '/uploaded/'
 MEDIA_ROOT = BASE_DIR / "../media_root"
 
 LOGIN_REDIRECT_URL = "main:movie-list"
+
+CSRF_USE_SESSIONS = True
