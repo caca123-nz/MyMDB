@@ -1,5 +1,5 @@
 -r requirements.common.txt
-psycopg2<2.8.6
+python3-psycopg2<2.8.5 
 
 # packages to help us upload files to S3 easily
 django-storages<1.10.1

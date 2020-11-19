@@ -7,6 +7,8 @@ INSTALLED_APPS +=[
   "debug_toolbar",
 ]
 
+MIDDLEWARE.insert(3, 'debug_toolbar.middleware.DebugToolbarMiddleware',)
+
 DATABASES["default"].update({
   'ENGINE': 'django.db.backends.sqlite3',
   'NAME': BASE_DIR / 'db.sqlite3',
