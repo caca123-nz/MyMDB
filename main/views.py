@@ -59,7 +59,7 @@ class SuccessUrlAndRenderToResponse:
   def render_to_response(self, context,  **response_kwargs):
     # Returnin a HTTP redirect instead of rendering a template
     # Getting movie id from context args if formvalidation failed
-    # Errors message get losing
+    # Errors message get lost
     movie_id = context["movie"].id
     movie_detail_url = reverse("main:movie-detail", kwargs={"pk":movie_id})
     return redirect(to=movie_detail_url)
